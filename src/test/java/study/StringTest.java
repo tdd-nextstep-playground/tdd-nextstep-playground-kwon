@@ -5,6 +5,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 public class StringTest {
 
@@ -53,5 +54,13 @@ public class StringTest {
         char expected = 'b';
 
         Assertions.assertThat(result).isEqualTo(expected);
+    }
+
+    @Test
+    @DisplayName("특정 위치 문자의 인덱스가 넘을 경우 StringIndexOutOfBoundsException이 발생한다.")
+    void charAt_exception() {
+        Assertions.assertThatThrownBy(
+                () -> "abc".charAt(4)
+        ).isInstanceOf(StringIndexOutOfBoundsException.class);
     }
 }
