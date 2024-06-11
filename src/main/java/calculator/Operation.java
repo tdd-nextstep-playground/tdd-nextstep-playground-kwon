@@ -4,7 +4,10 @@ import java.util.function.BiFunction;
 
 public enum Operation {
 
-    PLUS("+", (number1, number2) -> (number1 + number2));
+    ADD         ("+", (number1, number2) -> (number1 + number2)),
+    SUBTRACT    ("-", (number1, number2) -> (number1 - number2)),
+    MULTIPLY    ("*" , (number1, number2) -> (number1 * number2)),
+    DIVIDE      ("/", (number1, number2) -> (number1 / number2));
 
     private String operation;
     private BiFunction<Integer, Integer, Integer> operationFunction;
@@ -18,3 +21,4 @@ public enum Operation {
         return operationFunction.apply(number1, number2);
     }
 }
+
