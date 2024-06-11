@@ -5,8 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import javax.swing.*;
-import javax.swing.plaf.basic.BasicInternalFrameTitlePane;
+import java.util.List;
 
 @DisplayName("문자열 계산기 테스트")
 public class CalculatorTest {
@@ -20,38 +19,58 @@ public class CalculatorTest {
     }
 
     @Test
-    @DisplayName("빈 공백 문자열을 기준으로 문자들을 분리한다.")
-    void split() {
-        String expression = "2 + 3 * 4 / 2";
-
-        String[] elements = WhiteSpaceSplit.split(expression);
-
-        for (String element : elements) {
-            System.out.println("element : " + element);
-        }
-    }
-
-    @Test
     @DisplayName("두 숫자를 더한다.")
     void add() {
-        Assertions.assertThat(Operation.ADD.apply("+", number1, number2)).isEqualTo(3);
+        Assertions.assertThat(Operation.apply("+", number1, number2)).isEqualTo(3);
     }
 
     @Test
     @DisplayName("두 숫자를 뺀다.")
     void subtract() {
-        Assertions.assertThat(Operation.SUBTRACT.apply("-", number2, number1)).isEqualTo(1);
+        Assertions.assertThat(Operation.apply("-", number2, number1)).isEqualTo(1);
     }
 
     @Test
     @DisplayName("두 숫자를 곱한다.")
     void multiply() {
-        Assertions.assertThat(Operation.MULTIPLY.apply("*", number1, number2)).isEqualTo(2);
+        Assertions.assertThat(Operation.apply("*", number1, number2)).isEqualTo(2);
     }
 
     @Test
     @DisplayName("두 숫자를 나눈다.")
     void divide() {
-        Assertions.assertThat(Operation.DIVIDE.apply("/", number1, number2)).isEqualTo(0);
+        Assertions.assertThat(Operation.apply("/", number1, number2)).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("식에 존재하는 숫자를 반환한다.")
+    void getNumbers() {
+        String given = "2 + 3 * 4 / 2";
+        NumberAndOperationSplit split = new NumberAndOperationSplit(given);
+
+        List<Integer> numbers = split.numbers();
+
+        numbers.forEach(thisNumber -> System.out.println("number : " + thisNumber));
+    }
+
+    @Test
+    @DisplayName("식에 존재하는 연산을 반환한다.")
+    void getOperations() {
+        String given = "2 + 3 * 4 / 2";
+        NumberAndOperationSplit split = new NumberAndOperationSplit(given);
+
+        List<String> operations = split.operations();
+
+        operations.forEach(thisOperation -> System.out.println("operation : " + thisOperation));
+    }
+
+    @Test
+    @DisplayName("사칙 연산을 진행한다.")
+    void calculate() {
+        String given = "2 + 3 * 4 / 2";
+        int expected = 10;
+        Calculator calculator = new Calculator(given);
+
+        Assertions.assertThat(calculator.calculate()).isEqualTo(expected);
     }
 }

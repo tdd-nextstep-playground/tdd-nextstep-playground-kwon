@@ -1,5 +1,7 @@
 package calculator;
 
+import java.util.Arrays;
+import java.util.NoSuchElementException;
 import java.util.function.BiFunction;
 
 public enum Operation {
@@ -17,8 +19,13 @@ public enum Operation {
         this.operationFunction = operationFunction;
     }
 
-    public Integer apply(String operation, Integer number1, Integer number2) {
-        return operationFunction.apply(number1, number2);
+    public static Integer apply(String inputOperation, Integer number1, Integer number2) {
+        Operation choicedOperation = Arrays.stream(values())
+                .filter(thisOperation -> thisOperation.operation.equals(inputOperation))
+                .findFirst()
+                .orElseThrow(() -> new NoSuchElementException("연산자가 존재하지 않습니다."));
+
+        return choicedOperation.operationFunction.apply(number1, number2);
     }
 }
 
