@@ -9,10 +9,15 @@ public enum Operation {
     ADD         ("+", (number1, number2) -> (number1 + number2)),
     SUBTRACT    ("-", (number1, number2) -> (number1 - number2)),
     MULTIPLY    ("*" , (number1, number2) -> (number1 * number2)),
-    DIVIDE      ("/", (number1, number2) -> (number1 / number2));
+    DIVIDE      ("/", (number1, number2) -> {
+        if(number2 == 0){
+            throw new ArithmeticException("나눗셈 수행 불가. 제수값 : 0");
+        }
+        return number1 / number2
+            });
 
-    private String operation;
-    private BiFunction<Integer, Integer, Integer> operationFunction;
+    private final String operation;
+    private final BiFunction<Integer, Integer, Integer> operationFunction;
 
     private Operation(String operation, BiFunction<Integer, Integer, Integer> operationFunction) {
         this.operation = operation;
@@ -20,7 +25,7 @@ public enum Operation {
     }
 
     public static Integer apply(String inputOperation, Integer number1, Integer number2) {
-        Operation choicedOperation = Arrays.stream(values())
+        Operation chosenOperation = Arrays.stream(values())
                 .filter(thisOperation -> thisOperation.operation.equals(inputOperation))
                 .findFirst()
                 .orElseThrow(() -> new NoSuchElementException("연산자가 존재하지 않습니다."));
