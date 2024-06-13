@@ -18,9 +18,9 @@ public class StringTest {
     @Test
     @DisplayName("1,2를 split 했을 때 1과 2로 분리된다.")
     void split_comma() {
-        String numbers = "1,2";
+        String stringNumbers = "1,2";
 
-        String[] splitNumbers = numbers.split(",");
+        String[] splitNumbers = stringNumbers.split(",");
 
         Assertions.assertThat(splitNumbers).containsExactly("1", "2");
     }
@@ -28,9 +28,9 @@ public class StringTest {
     @Test
     @DisplayName("1을 ,로 split 했을 때 1만을 포함하는 배열이 반환된다.")
     void split_comma_onlyOne() {
-        String numbers = "1";
+        String numberOne = "1";
 
-        String[] splitNumbers = numbers.split(",");
+        String[] splitNumbers = numberOne.split(",");
 
         Assertions.assertThat(splitNumbers).containsExactly("1");
     }

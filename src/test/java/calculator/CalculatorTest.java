@@ -73,4 +73,15 @@ public class CalculatorTest {
 
         Assertions.assertThat(calculator.calculate()).isEqualTo(expected);
     }
+
+    @Test
+    @DisplayName("나눗셈의 제수 값이 0인 경우 예외가 발생한다.")
+    void calculate_exception_divide_zero() {
+        String given = "1 / 0";
+        Calculator calculator = new Calculator(given);
+
+        Assertions.assertThatThrownBy(
+                () -> calculator.calculate()
+        ).isInstanceOf(ArithmeticException.class);
+    }
 }
