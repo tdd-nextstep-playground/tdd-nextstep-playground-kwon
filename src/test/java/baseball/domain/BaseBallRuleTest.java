@@ -8,7 +8,6 @@ import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 @DisplayName("야구 게임 룰 도메인 테스트")
 public class BaseBallRuleTest {
@@ -17,7 +16,7 @@ public class BaseBallRuleTest {
 
     @BeforeEach
     void setUp() {
-        computer = new Computer(Set.of("1", "2", "3"));
+        computer = new Computer(List.of("1", "2", "3"));
         answerNumbers = new ArrayList<>(computer.getAnswerNumbers());
     }
 

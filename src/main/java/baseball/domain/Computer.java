@@ -1,30 +1,32 @@
 package baseball.domain;
 
-import java.util.HashSet;
-import java.util.Random;
-import java.util.Set;
+import java.util.*;
 
 public class Computer {
     private static String[] numbers = {"1", "2", "3", "4", "5", "6", "7", "8", "9"};
     private static Random random = new Random();
 
-    private final Set<String> answerNumbers;
+    private final List<String> answerNumbers;
 
     public Computer() {
         this.answerNumbers = createAnswerNumbers();
     }
 
-    public Set<String> getAnswerNumbers() {
-        return answerNumbers;
+    public Computer(List<String> answerNumbers) {
+        this.answerNumbers = answerNumbers;
     }
 
-    private Set<String> createAnswerNumbers() {
+    private List<String> createAnswerNumbers() {
         Set<String> answerNumbers = new HashSet<>();
         while (answerNumbers.size() < 3) {
             int index = random.nextInt(numbers.length);
             answerNumbers.add(numbers[index]);
         }
 
+        return new ArrayList<>(answerNumbers);
+    }
+
+    public List<String> getAnswerNumbers() {
         return answerNumbers;
     }
 }
