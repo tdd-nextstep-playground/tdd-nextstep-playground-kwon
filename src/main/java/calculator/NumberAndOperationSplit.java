@@ -26,11 +26,11 @@ public class NumberAndOperationSplit {
 
     public List<String> operations() {
         return Arrays.stream(elements)
-                .filter(thisElement -> isNotNumber(thisElement))
+                .filter(thisElement -> isOperation(thisElement))
                 .collect(Collectors.toList());
     }
 
-    private static boolean isNotNumber(String element) {
+    private static boolean isOperation(String element) {
         return !isNumber(element);
     }
 
