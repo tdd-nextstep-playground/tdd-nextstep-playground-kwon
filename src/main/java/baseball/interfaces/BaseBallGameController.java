@@ -15,10 +15,20 @@ public class BaseBallGameController {
         service = new BaseBallGameService();
     }
 
-    public void gameStart() {
+    public int gameStart() {
         String playerNumbers = inputView.inputPlayerNumbers();
         BaseBallGameRequest request = new BaseBallGameRequest(playerNumbers);
         BaseBallGameResponse response = service.inning(request);
         resultView.print(response);
+
+        return response.getStrikeCount();
+    }
+
+    public void endGame() {
+        resultView.printEnd();
+    }
+
+    public int gameReStart() {
+        return inputView.inputReStart();
     }
 }
