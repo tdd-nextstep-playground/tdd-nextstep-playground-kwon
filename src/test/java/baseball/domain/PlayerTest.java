@@ -23,7 +23,7 @@ public class PlayerTest {
     void threeStrike() {
         Player player = new Player(List.of("4", "2", "5"));
 
-        List<BaseBallRule> playerResult = player.result(answerNumbers);
+        List<BaseBallRule> playerResult = player.inningResult(answerNumbers);
 
         printResult(playerResult);
     }
@@ -33,7 +33,7 @@ public class PlayerTest {
     void oneStrike() {
         Player player = new Player(List.of("1", "2", "3"));
 
-        List<BaseBallRule> playerResult = player.result(answerNumbers);
+        List<BaseBallRule> playerResult = player.inningResult(answerNumbers);
 
         printResult(playerResult);
     }
@@ -43,7 +43,7 @@ public class PlayerTest {
     void oneStrike_and_oneBall() {
         Player player = new Player(List.of("4", "5", "6"));
 
-        List<BaseBallRule> playerResult = player.result(answerNumbers);
+        List<BaseBallRule> playerResult = player.inningResult(answerNumbers);
 
         printResult(playerResult);
     }
@@ -53,7 +53,7 @@ public class PlayerTest {
     void fourBall() {
         Player player = new Player(List.of("7", "8", "9"));
 
-        List<BaseBallRule> playerResult = player.result(answerNumbers);
+        List<BaseBallRule> playerResult = player.inningResult(answerNumbers);
 
         printResult(playerResult);
     }

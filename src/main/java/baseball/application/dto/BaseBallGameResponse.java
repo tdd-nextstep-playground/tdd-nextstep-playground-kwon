@@ -3,12 +3,12 @@ package baseball.application.dto;
 public class BaseBallGameResponse {
     private int strikeCount;
     private int ballCount;
-    private boolean isFourBall;
+    private boolean hasFourBall;
 
-    public BaseBallGameResponse(int strikeCount, int ballCount, boolean isFourBall) {
+    public BaseBallGameResponse(int strikeCount, int ballCount, boolean hasFourBall) {
         this.strikeCount = strikeCount;
         this.ballCount = ballCount;
-        this.isFourBall= isFourBall;
+        this.hasFourBall = hasFourBall;
     }
 
     public int getStrikeCount() {
@@ -19,8 +19,8 @@ public class BaseBallGameResponse {
         return ballCount;
     }
 
-    public boolean isFourBall() {
-        return isFourBall;
+    public boolean isHasFourBall() {
+        return hasFourBall;
     }
 
     @Override
@@ -28,7 +28,7 @@ public class BaseBallGameResponse {
         return "{" +
                 "strikeCount=" + strikeCount +
                 ", ballCount=" + ballCount +
-                ", isFourBall=" + isFourBall +
+                ", isFourBall=" + hasFourBall +
                 '}';
     }
 }
